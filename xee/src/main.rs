@@ -21,8 +21,6 @@ pub(crate) struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Generate shell completion scripts.
-    Completion(completion::Completion),
     /// Format an XML document with various options.
     Format(format::Format),
     /// Format an XML document with indentation to make it more readable.
@@ -35,6 +33,8 @@ enum Commands {
     Repl(repl::Repl),
     /// Transform an XML document using an XSLT stylesheet.
     Xslt(xslt::Xslt),
+    /// Generate shell completion scripts.
+    Completion(completion::Completion),
 }
 
 fn main() -> anyhow::Result<()> {
