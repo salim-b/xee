@@ -1,4 +1,5 @@
 mod common;
+mod completion;
 mod error;
 mod format;
 mod indent;
@@ -20,6 +21,8 @@ pub(crate) struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// Generate shell completion scripts.
+    Completion(completion::Completion),
     /// Format an XML document with various options.
     Format(format::Format),
     /// Format an XML document with indentation to make it more readable.
@@ -37,6 +40,9 @@ enum Commands {
 fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
     match cli.command {
+        Commands::Completion(completion) => {
+            completion.run()?;
+        }
         Commands::Indent(indent) => {
             indent.run()?;
         }
